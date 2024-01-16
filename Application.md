@@ -1,6 +1,7 @@
-## Application 
+## Application
 
 There are 5 resources:
+
 - Users
 - Principal
 - Students
@@ -23,23 +24,24 @@ There are 5 resources:
 Please fork the repository into your account and continue the development in your fork.
 
 Your tasks
+
 - Add missing APIs mentioned here and get the automated tests to pass
 - Add tests for grading API
 - All tests should pass
 - Get the test coverage to 94% or above
 - There are certain SQL tests present inside `tests/SQL/`. You have to write SQL in following files:
-    - count_grade_A_assignments_by_teacher_with_max_grading.sql
-    - number_of_assignments_per_state.sql
+  - count_grade_A_assignments_by_teacher_with_max_grading.sql
+  - number_of_assignments_per_state.sql
 - Optionally, Dockerize your application by creating a Dockerfile and a docker-compose.yml file, providing clear documentation on building and running the application with Docker, to stand out in your submission
 
 Once you are done with your task, please use [this form](https://forms.gle/dJLNMyBmBCJSv6EH7) to complete your submission.
 
-You will hear back within 48 hours from us via email. 
-
+You will hear back within 48 hours from us via email.
 
 ## Available APIs
 
 ### Auth
+
 - header: "X-Principal"
 - value: {"user_id":1, "student_id":1}
 
@@ -48,6 +50,7 @@ For APIs to work you need a principal header to establish identity and context
 ### GET /student/assignments
 
 List all assignments created by a student
+
 ```
 headers:
 X-Principal: {"user_id":1, "student_id":1}
@@ -82,6 +85,7 @@ response:
 ### POST /student/assignments
 
 Create an assignment
+
 ```
 headers:
 X-Principal: {"user_id":2, "student_id":2}
@@ -109,6 +113,7 @@ response:
 ### POST /student/assignments
 
 Edit an assignment
+
 ```
 headers:
 X-Principal: {"user_id":2, "student_id":2}
@@ -137,6 +142,7 @@ response:
 ### POST /student/assignments/submit
 
 Submit an assignment
+
 ```
 headers:
 X-Principal: {"user_id":1, "student_id":1}
@@ -162,9 +168,11 @@ response:
 }
 
 ```
+
 ### GET /teacher/assignments
 
 List all assignments submitted to this teacher
+
 ```
 headers:
 X-Principal: {"user_id":3, "teacher_id":1}
@@ -189,6 +197,7 @@ response:
 ### POST /teacher/assignments/grade
 
 Grade an assignment
+
 ```
 headers:
 X-Principal: {"user_id":3, "teacher_id":1}
@@ -221,6 +230,7 @@ You'll need to implement these APIs
 ### GET /principal/assignments
 
 List all submitted and graded assignments
+
 ```
 headers:
 X-Principal: {"user_id":5, "principal_id":1}
@@ -245,6 +255,7 @@ response:
 ### GET /principal/teachers
 
 List all the teachers
+
 ```
 headers:
 X-Principal: {"user_id":5, "principal_id":1}
@@ -266,6 +277,7 @@ response:
 ### POST /principal/assignments/grade
 
 Grade or re-grade an assignment
+
 ```
 headers:
 X-Principal: {"user_id":5, "principal_id":1}

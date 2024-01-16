@@ -100,3 +100,35 @@ def test_grade_assignment_draft_assignment(client, h_teacher_1):
     data = response.json
 
     assert data['error'] == 'FyleError'
+
+def test_grade_assignment_bad_assignment2(client, h_teacher_1):
+    """
+    failure case: If an assignment does not exists check and throw 404
+    """
+    response = client.post(
+        '/teacher/assignments/grade',
+        headers=h_teacher_1,
+        json={
+            "id": -1,
+            "grade": "A"
+        }
+    )
+
+    assert response.status_code == 404
+    data = response.json
+
+    assert data['error'] == 'FyleError'
+
+def test_grade_nonexistent_assignment_api(client, h_teacher_1):
+    """Test grading a nonexistent assignment via API"""
+
+    response = client.post(
+        '/teacher/assignments/999/grade',
+        headers=h_teacher_1,
+        json={
+            'grade': 'A',
+            'feedback': 'Grading a nonexistent assignment!',
+        }
+    )
+    assert response.status_code == 404
+    assert response.json['error'] == 'NotFound'

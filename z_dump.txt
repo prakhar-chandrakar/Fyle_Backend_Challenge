@@ -1,0 +1,8 @@
+rm core/store.sqlite3
+$env:FLASK_APP = "core/server.py"
+flask db upgrade -d core/migrations/
+pytest -vvv -s tests/
+pytest -vvv (to see the outputs)
+pytest --cov
+sqlite3 core/store.sqlite3
+./run.ps1
