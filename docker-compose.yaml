@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  web:
+    image: prakhar12388/fyle_assignment
+    working_dir: /app
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      - NAME=World
+    command: ["bash", "run.sh"]
+    depends_on:
+        - db
+
+  db:
+    image: nouchka/sqlite3:latest
+    volumes:
+      - sqlite_data:/app/core
+    command: 
+      - "sh"
+      - "-c"
+      - >
+        rm /app/core/store.sqlite3 && 
+        FLASK_APP=core/server.py flask db upgrade -d /app/core/migrations/"
+      
+volumes:
+  sqlite_data:
